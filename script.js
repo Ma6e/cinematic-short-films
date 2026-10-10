@@ -23,7 +23,7 @@ const movies = [
     budget: "$1.9M",
     director: "Nora Velez",
     summary:
-      "In a future where heat is rationed, a young engineer must decide whether to save a city or keep the last spark alive for her family.",
+      "In a future where heat is rationed, a young engineer must decide whether to save her city or keep the last spark alive for her family.",
     image:
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80",
     trailer: "https://www.youtube.com/embed/ysz5S6PUM-U?si=2-3dQXg2AkN7W7iE",
@@ -83,7 +83,7 @@ const movies = [
     budget: "$2.4M",
     director: "Leah Moreno",
     summary:
-      "A portrait of a neighborhood at the edge of urban renewal, told through voices and the architecture that shaped them.",
+      "A portrait of a neighborhood at the edge of urban renewal, told through voices and architecture that shaped the community.",
     image:
       "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80",
     trailer: "https://www.youtube.com/embed/jNQXAC9IVRw?si=ef2m2O9n8gB7yM0X",
@@ -95,10 +95,12 @@ const filters = ["All", "Drama", "Sci-Fi", "Romance", "Thriller", "Mystery", "Do
 
 const movieGrid = document.getElementById("movieGrid");
 const filterGroup = document.getElementById("filters");
+const searchInput = document.getElementById("searchInput");
 const modal = document.getElementById("trailerModal");
 const trailerFrame = document.getElementById("trailerFrame");
 
 let activeFilter = "All";
+let currentQuery = "";
 
 function renderFilters() {
   filterGroup.innerHTML = filters
@@ -117,11 +119,33 @@ function renderFilters() {
   });
 }
 
+function getVisibleMovies() {
+  const normalizedQuery = currentQuery.trim().toLowerCase();
+
+  return movies.filter((movie) => {
+    const matchesFilter = activeFilter === "All" || movie.genre === activeFilter;
+    const matchesSearch =
+      !normalizedQuery ||
+      movie.title.toLowerCase().includes(normalizedQuery) ||
+      movie.genre.toLowerCase().includes(normalizedQuery) ||
+      movie.director.toLowerCase().includes(normalizedQuery);
+
+    return matchesFilter && matchesSearch;
+  });
+}
+
 function renderMovies() {
-  const visibleMovies =
-    activeFilter === "All"
-      ? movies
-      : movies.filter((movie) => movie.genre === activeFilter);
+  const visibleMovies = getVisibleMovies();
+
+  if (!visibleMovies.length) {
+    movieGrid.innerHTML = `
+      <div class="movie-card" style="grid-column: 1 / -1; padding: 28px 22px;">
+        <h4 style="margin:0; letter-spacing:-0.05em;">No films match your search.</h4>
+        <p style="margin:10px 0 0; color: var(--muted);">Try another genre or search term.</p>
+      </div>
+    `;
+    return;
+  }
 
   movieGrid.innerHTML = visibleMovies
     .map(
@@ -154,8 +178,7 @@ function renderMovies() {
 
   movieGrid.querySelectorAll(".movie-button").forEach((button) => {
     button.addEventListener("click", () => {
-      const url = button.dataset.trailer;
-      trailerFrame.src = url;
+      trailerFrame.src = button.dataset.trailer;
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
     });
@@ -168,6 +191,34 @@ function closeModal() {
   trailerFrame.src = "";
 }
 
+searchInput.addEventListener("input", (event) => {
+  currentQuery = event.target.value;
+  renderMovies();
+});
+
+const heroFeaturedButton = document.querySelector("#featuredBtn");
+if (heroFeaturedButton) {
+  heroFeaturedButton.addEventListener("click", () => {
+    document.getElementById("discover").scrollIntoView({ behavior: "smooth" });
+  });
+}
+
+const heroCatalogButton = document.querySelector("#catalogBtn");
+if (heroCatalogButton) {
+  heroCatalogButton.addEventListener("click", () => {
+    document.getElementById("festival").scrollIntoView({ behavior: "smooth" });
+  });
+}
+
+const trailerButton = document.querySelector("[data-trailer]");
+if (trailerButton) {
+  trailerButton.addEventListener("click", () => {
+    trailerFrame.src = trailerButton.dataset.trailer;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+  });
+}
+
 document.querySelector(".close-btn").addEventListener("click", closeModal);
 document.querySelector("[data-close='true']").addEventListener("click", closeModal);
 document.addEventListener("keydown", (event) => {
@@ -178,17 +229,3 @@ document.addEventListener("keydown", (event) => {
 
 renderFilters();
 renderMovies();
-
-const heroButton = document.querySelector(".primary-btn.large");
-if (heroButton) {
-  heroButton.addEventListener("click", () => {
-    document.getElementById("discover").scrollIntoView({ behavior: "smooth" });
-  });
-}
-
-const ghostHero = document.querySelector(".ghost-btn.large");
-if (ghostHero) {
-  ghostHero.addEventListener("click", () => {
-    document.getElementById("festival").scrollIntoView({ behavior: "smooth" });
-  });
-}

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CineFrame | Short Film Collection</title>
+    <title>CineFrame | Premium Short Films</title>
     <meta
       name="description"
-      content="A cinematic short film discovery app featuring premium festival picks, award-winning creators, and immersive storytelling."
+      content="CineFrame is a premium short-film streaming app featuring festival winners, award-worthy creators, and immersive cinematic storytelling."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,19 +19,26 @@
   <body>
     <div class="page-shell">
       <header class="topbar">
-        <div class="brand">
+        <div class="brand-wrap">
           <div class="brand-mark">C</div>
-          <span>CineFrame</span>
+          <div class="brand-text">
+            <span class="brand-name">CineFrame</span>
+            <small>premium shorts</small>
+          </div>
         </div>
 
-        <nav class="main-nav">
+        <nav class="main-nav" aria-label="Main navigation">
           <a href="#discover">Discover</a>
           <a href="#festival">Festival</a>
           <a href="#creators">Creators</a>
           <a href="#journal">Journal</a>
         </nav>
 
-        <div class="nav-actions">
+        <div class="topbar-tools">
+          <label class="search-box" aria-label="Search films">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Search films" />
+          </label>
           <button class="ghost-btn">Sign In</button>
           <button class="primary-btn">Start Watching</button>
         </div>
@@ -40,22 +47,22 @@
       <main>
         <section class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">Now streaming • Academy-quality shorts</p>
-            <h1>Stories that feel like a million-dollar film.</h1>
+            <p class="eyebrow">Now streaming • academy-level shorts</p>
+            <h1>Big-screen stories crafted for modern viewers.</h1>
             <p class="lede">
-              Discover handcrafted shorts by visionary directors, award-winning crews,
-              and a new generation of storytellers shooting on a cinematic scale.
+              Explore handcrafted short films with million-dollar ambition — rich visuals,
+              world-class direction, and stories built to linger long after the credits roll.
             </p>
 
             <div class="hero-actions">
-              <button class="primary-btn large">Watch Featured</button>
-              <button class="ghost-btn large">Explore Catalog</button>
+              <button class="primary-btn large" id="featuredBtn">Watch Featured</button>
+              <button class="ghost-btn large" id="catalogBtn">Browse Catalog</button>
             </div>
 
             <div class="metrics">
               <div>
                 <strong>28K+</strong>
-                <span>monthly viewers</span>
+                <span>hourly viewers</span>
               </div>
               <div>
                 <strong>94%</strong>
@@ -63,25 +70,27 @@
               </div>
               <div>
                 <strong>12</strong>
-                <span>award finalists</span>
+                <span>festival finalists</span>
               </div>
             </div>
           </div>
 
           <div class="hero-visual">
-            <div class="poster-card featured-card">
+            <div class="featured-poster">
               <div class="poster-overlay"></div>
               <div class="poster-content">
                 <p class="film-label">Featured short</p>
                 <h2>Glass Harbor</h2>
-                <div class="poster-meta">
+                <div class="poster-detail-row">
                   <span>Drama</span>
                   <span>18 min</span>
                   <span>4.9 ★</span>
                 </div>
                 <div class="poster-footer">
                   <span>Budget: $2.8M</span>
-                  <button class="watch-badge">Play trailer</button>
+                  <button class="watch-badge" data-trailer="https://www.youtube.com/embed/ScMzIvxBSi4?si=H1Z1q2Y3c3DqUIGt">
+                    Play trailer
+                  </button>
                 </div>
               </div>
             </div>
@@ -90,7 +99,7 @@
 
         <section class="stats-strip">
           <div>
-            <span>Feature length</span>
+            <span>Feature-length watch</span>
             <strong>8.7 hrs</strong>
           </div>
           <div>
@@ -108,15 +117,36 @@
         </section>
 
         <section id="discover" class="catalog">
-          <div class="section-heading">
+          <div class="catalog-head">
             <div>
               <p class="eyebrow">Curated collection</p>
-              <h3>Discover emerging masterpieces</h3>
+              <h3>Discover award-worthy stories</h3>
             </div>
-            <div class="filter-group" id="filters" aria-label="Movie filters"></div>
+            <div class="filters" id="filters" aria-label="Movie category filters"></div>
           </div>
 
           <div class="movie-grid" id="movieGrid"></div>
+        </section>
+
+        <section class="showcase">
+          <div class="showcase-card accent-card">
+            <p class="mini-label">Featured director</p>
+            <h4>Malia Grey</h4>
+            <p>
+              Award-winning visual storyteller known for emotionally precise, premium cinema built around character and atmosphere.
+            </p>
+            <button class="ghost-btn">View profile</button>
+          </div>
+
+          <div class="showcase-card">
+            <p class="mini-label">Today’s highlight</p>
+            <h4>After the Rain</h4>
+            <p>Best Director • Sundance 2025</p>
+            <div class="mini-stats">
+              <span>92% critics</span>
+              <span>9.1 score</span>
+            </div>
+          </div>
         </section>
 
         <section id="festival" class="festival-panel">
@@ -128,7 +158,7 @@
           <div class="festival-list">
             <article class="festival-item">
               <div class="award-mark">1</div>
-              <div>
+              <div class="festival-detail">
                 <h4>After the Rain</h4>
                 <p>Best Director • Sundance 2025</p>
               </div>
@@ -136,15 +166,15 @@
             </article>
             <article class="festival-item">
               <div class="award-mark">2</div>
-              <div>
-                <h4>Rust & Bloom</h4>
+              <div class="festival-detail">
+                <h4>Rust &amp; Bloom</h4>
                 <p>Audience Favorite • SXSW</p>
               </div>
               <span>96% audience</span>
             </article>
             <article class="festival-item">
               <div class="award-mark">3</div>
-              <div>
+              <div class="festival-detail">
                 <h4>Night Signal</h4>
                 <p>Best Cinematography • Tribeca</p>
               </div>
@@ -154,7 +184,7 @@
         </section>
 
         <section id="creators" class="creators">
-          <div class="section-heading narrow">
+          <div class="catalog-head narrow">
             <div>
               <p class="eyebrow">Meet the team</p>
               <h3>Crafted by world-class storytellers</h3>
@@ -165,17 +195,17 @@
             <article class="creator-card">
               <img
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80"
-                alt="Director"
+                alt="Director portrait"
               />
               <div class="creator-card-copy">
                 <h4>Malia Grey</h4>
-                <p>Director • "Glass Harbor"</p>
+                <p>Director • Glass Harbor</p>
               </div>
             </article>
             <article class="creator-card">
               <img
                 src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
-                alt="Producer"
+                alt="Producer portrait"
               />
               <div class="creator-card-copy">
                 <h4>Daniel Rowe</h4>
@@ -185,7 +215,7 @@
             <article class="creator-card">
               <img
                 src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80"
-                alt="Cinematographer"
+                alt="Cinematographer portrait"
               />
               <div class="creator-card-copy">
                 <h4>Selene Park</h4>
@@ -196,7 +226,7 @@
         </section>
 
         <section id="journal" class="journal">
-          <div class="section-heading narrow">
+          <div class="catalog-head narrow">
             <div>
               <p class="eyebrow">Behind the lens</p>
               <h3>Journal</h3>
