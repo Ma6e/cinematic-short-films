@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineFrame | Short Film Collection</title>
+    <meta
+      name="description"
+      content="A cinematic short film discovery app featuring premium festival picks, award-winning creators, and immersive storytelling."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">C</div>
+          <span>CineFrame</span>
+        </div>
+
+        <nav class="main-nav">
+          <a href="#discover">Discover</a>
+          <a href="#festival">Festival</a>
+          <a href="#creators">Creators</a>
+          <a href="#journal">Journal</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="ghost-btn">Sign In</button>
+          <button class="primary-btn">Start Watching</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Now streaming • Academy-quality shorts</p>
+            <h1>Stories that feel like a million-dollar film.</h1>
+            <p class="lede">
+              Discover handcrafted shorts by visionary directors, award-winning crews,
+              and a new generation of storytellers shooting on a cinematic scale.
+            </p>
+
+            <div class="hero-actions">
+              <button class="primary-btn large">Watch Featured</button>
+              <button class="ghost-btn large">Explore Catalog</button>
+            </div>
+
+            <div class="metrics">
+              <div>
+                <strong>28K+</strong>
+                <span>monthly viewers</span>
+              </div>
+              <div>
+                <strong>94%</strong>
+                <span>audience rating</span>
+              </div>
+              <div>
+                <strong>12</strong>
+                <span>award finalists</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="poster-card featured-card">
+              <div class="poster-overlay"></div>
+              <div class="poster-content">
+                <p class="film-label">Featured short</p>
+                <h2>Glass Harbor</h2>
+                <div class="poster-meta">
+                  <span>Drama</span>
+                  <span>18 min</span>
+                  <span>4.9 ★</span>
+                </div>
+                <div class="poster-footer">
+                  <span>Budget: $2.8M</span>
+                  <button class="watch-badge">Play trailer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats-strip">
+          <div>
+            <span>Feature length</span>
+            <strong>8.7 hrs</strong>
+          </div>
+          <div>
+            <span>Short films</span>
+            <strong>420+</strong>
+          </div>
+          <div>
+            <span>New premieres</span>
+            <strong>17</strong>
+          </div>
+          <div>
+            <span>Festival buzz</span>
+            <strong>Top 5</strong>
+          </div>
+        </section>
+
+        <section id="discover" class="catalog">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Curated collection</p>
+              <h3>Discover emerging masterpieces</h3>
+            </div>
+            <div class="filter-group" id="filters" aria-label="Movie filters"></div>
+          </div>
+
+          <div class="movie-grid" id="movieGrid"></div>
+        </section>
+
+        <section id="festival" class="festival-panel">
+          <div class="panel-copy">
+            <p class="eyebrow">Festival circuit</p>
+            <h3>Critics’ favorite selections this week</h3>
+          </div>
+
+          <div class="festival-list">
+            <article class="festival-item">
+              <div class="award-mark">1</div>
+              <div>
+                <h4>After the Rain</h4>
+                <p>Best Director • Sundance 2025</p>
+              </div>
+              <span>92% critics</span>
+            </article>
+            <article class="festival-item">
+              <div class="award-mark">2</div>
+              <div>
+                <h4>Rust & Bloom</h4>
+                <p>Audience Favorite • SXSW</p>
+              </div>
+              <span>96% audience</span>
+            </article>
+            <article class="festival-item">
+              <div class="award-mark">3</div>
+              <div>
+                <h4>Night Signal</h4>
+                <p>Best Cinematography • Tribeca</p>
+              </div>
+              <span>9.1 score</span>
+            </article>
+          </div>
+        </section>
+
+        <section id="creators" class="creators">
+          <div class="section-heading narrow">
+            <div>
+              <p class="eyebrow">Meet the team</p>
+              <h3>Crafted by world-class storytellers</h3>
+            </div>
+          </div>
+
+          <div class="creator-grid">
+            <article class="creator-card">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80"
+                alt="Director"
+              />
+              <div class="creator-card-copy">
+                <h4>Malia Grey</h4>
+                <p>Director • "Glass Harbor"</p>
+              </div>
+            </article>
+            <article class="creator-card">
+              <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
+                alt="Producer"
+              />
+              <div class="creator-card-copy">
+                <h4>Daniel Rowe</h4>
+                <p>Producer • Global Stories Lab</p>
+              </div>
+            </article>
+            <article class="creator-card">
+              <img
+                src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80"
+                alt="Cinematographer"
+              />
+              <div class="creator-card-copy">
+                <h4>Selene Park</h4>
+                <p>Cinematographer • Visual storyteller</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="journal" class="journal">
+          <div class="section-heading narrow">
+            <div>
+              <p class="eyebrow">Behind the lens</p>
+              <h3>Journal</h3>
+            </div>
+          </div>
+
+          <div class="journal-grid">
+            <article>
+              <span>Production diary</span>
+              <h4>How indie filmmakers built a $3M short on a location-first strategy</h4>
+              <p>From coastal night shoots to a meticulous color grade, see how teams chase authenticity.</p>
+            </article>
+            <article>
+              <span>Sound design</span>
+              <h4>Why silence is the most cinematic tool in modern short films</h4>
+              <p>Designing tension through breath, ambience, and carefully placed sonic voids.</p>
+            </article>
+            <article>
+              <span>Festival notes</span>
+              <h4>Three shorts redefining emotional realism for 2025 audiences</h4>
+              <p>Fresh voices, elevated craft, and stories that linger long after the credits roll.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="trailerModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-panel">
+        <button class="close-btn" aria-label="Close trailer">×</button>
+        <div class="video-wrap">
+          <iframe
+            id="trailerFrame"
+            src=""
+            title="Trailer video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
